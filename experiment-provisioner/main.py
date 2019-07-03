@@ -12,6 +12,8 @@ from lxml import etree
 from abc import abstractmethod
 from reservation import IoTLABReservation
 from reservation import WilabReservation
+#from reservation import OpentestbedReservation
+
 
 from otbox_flash import OTBoxFlash
 from ov_startup import OVStartup
