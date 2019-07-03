@@ -42,6 +42,7 @@ class Controller(object):
 		self.default_fws = {
 			"iotlab": "03oos_openwsn_prog_iotlab",
 			"wilab" : "03oos_openwsn_prog_wilab.ihex"
+			#"opentestbed": "03oos_openwsn_prog_opentestebed" verificar esse arquivo, talvez seja o firmware para ser gravado
 		}
 
 		parser.add_argument('--user-id',   # User ID is tied to the OpenBenchmark account
@@ -63,7 +64,7 @@ class Controller(object):
 		)
 		parser.add_argument('--testbed', 
 			dest       = 'testbed',
-			choices    = ['iotlab', 'wilab'],
+			choices    = ['iotlab', 'wilab','opentestbed'],
 			default    = 'iotlab',
 			action     = 'store'
 		)
@@ -324,11 +325,59 @@ class Wilab(Controller):
 		letters = string.ascii_uppercase
 		return ''.join(random.choice(letters) for i in range(string_length))
 
+#Opentestbed implementation
+
+class Opentestbed(Controller):
+
+	def __init__(self, user_id, scenario, action):
+		super(Opentestbed, self).__init__()
+
+		self.CONFIG_SECTION = 'opentestbed'
+		self.scenario = scenario
+
+		#Acho que essa parte e desnecessaria
+		#self.USERNAME = os.environ["user"] if "user" in os.environ else self.configParser.get(self.CONFIG_SECTION,
+		#																					  'user')
+		#self.PRIVATE_SSH = os.environ["private_ssh"] if "private_ssh" in os.environ else ""
+		#self.HOSTNAME = 'saclay.iot-lab.info'
+
+		self.NODES = self._get_nodes()
+		self.EXP_DURATION = self._get_duration(self.scenario) + 10
+
+		self.BROKER = self.configParser.get(self.CONFIG_SECTION, 'broker')
+
+		self.add_files_from_env()
+		self.reservation = IoTLABReservation(user_id, self.USERNAME, self.HOSTNAME, self.BROKER, self.EXP_DURATION,
+											 self.NODES)
+
+		self.mqtt_client = MQTTClient.create('iotlab', user_id)
+
+	def add_files_from_env(self):
+		if self.PRIVATE_SSH != "":
+			private_ssh_file = os.path.join(os.path.expanduser("~"), ".ssh", "id_rsa")
+			private_ssh_decoded = base64.b64decode(self.PRIVATE_SSH)
+
+			with open(private_ssh_file, "w") as f:
+				f.write(private_ssh_decoded)
+
+	def _get_nodes(self):
+		# e.g. "saclay,a8,106+107"
+		config_file = os.path.join(self.SCENARIO_CONFIG, self.scenario, "_iotlab_config.json")
+
+		with open(config_file, 'r') as f:
+			config_obj = json.load(f)
+			nodes_str = 'saclay,a8,'
+
+			for generic_id in config_obj:
+				nodes_str += config_obj[generic_id]["node_id"].split("-")[2] + "+"
+
+			return nodes_str.rstrip("+")
 
 
 TESTBEDS = {
 	"iotlab": IoTLAB,
-	"wilab": Wilab
+	"wilab": Wilab,
+	"opentestbed":Opentestbed
 }
 
 
