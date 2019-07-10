@@ -78,6 +78,13 @@ class IotlabReflash(Reflash):
 	def _get_unused_nodes(self):
 		return []
 
+class OpenTestbedReflash(Reflash):
+	def __init__(self, scenario):
+		super(OpenTestbedReflash, self).__init__(scenario)
+		self.testbed = "opentestbed"
+
+	def _get_unused_nodes(self):
+		return []
 
 class WilabReflash(Reflash):
 
@@ -104,3 +111,5 @@ class WilabReflash(Reflash):
 						unused.append(pair_node_id)
 
 		return unused
+
+
