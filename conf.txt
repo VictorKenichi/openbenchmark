@@ -6,6 +6,10 @@ broker = broker.mqttdashboard.com
 broker = broker.mqttdashboard.com
 password = YOUR_PASSWORD
 
+[opentestbed]
+broker = broker.mqttdashboard.com
+password = YOUR_PASSWORD
+
 [dependencies]
 ov-repo = https://github.com/malishav/openvisualizer.git
 ov-branch = OV-7
