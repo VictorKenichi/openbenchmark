@@ -20,7 +20,7 @@ class FWCompiler:
 		self.board_names = {
 			"iotlab" : "iot-lab_A8-M3",
 			"wilab"  : "remote" ,
-			"opentestbed" : "openMote-b-24ghz"
+			"opentestbed" : "openmote-b-24ghz"
 		}
 		self.fw_dir      = os.path.join(os.path.dirname(__file__), "firmware") 
 
