@@ -97,7 +97,11 @@ class Simulator(object):
 
                 elif self.testbed == 'wilab':
                     nuc_id = testbed_node_id[:-2]
-                    sut_nodes["00-12-4b-00-14-b5-b6-{0}".format(eui64_suffix)] = nuc_id    
+                    sut_nodes["00-12-4b-00-14-b5-b6-{0}".format(eui64_suffix)] = nuc_id
+
+                elif self.testbed == 'opentestbed': ###################### Verificar essa parte ######################
+                    opentestbed_id = testbed_node_id[:-2]
+                    sut_nodes["00-12-4b-00-14-b5-b6-{0}".format(eui64_suffix)] = opentestbed_id
 
                 eui64_suffix += 1
                     
