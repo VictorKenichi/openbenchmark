@@ -12,6 +12,7 @@ from scenarios.industrial_monitoring.industrial_monitoring import IndustrialMoni
 from helpers.reflash.reflash import IotlabReflash
 from helpers.reflash.reflash import WilabReflash
 from helpers.reflash.reflash import OpenSimReflash
+from helpers.reflash.reflash import OpenTestbedReflash
 
 from mqtt_client.mqtt_client import MQTTClient
 
@@ -28,7 +29,8 @@ class NetworkPrep:
 	reflash = {
 		"iotlab": IotlabReflash,
 		"wilab": WilabReflash,
-		'opensim' : OpenSimReflash
+		'opensim' : OpenSimReflash,
+		'opentestbed': OpenTestbedReflash
 	}
 
 	def __init__(self, sut_command_payload):
