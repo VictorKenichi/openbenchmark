@@ -26,14 +26,14 @@ class Reflash(object):
 			self._remove_unused(nodes)
 
 	def _reflash_unused(self, nodes):
-		print "[REFLASH] Reverting unused nodes to eui64 retreival firmware..."
+		print ("[REFLASH] Reverting unused nodes to eui64 retreival firmware...")
 		for testbed_node_id in nodes:
 			self._flash_eui64_firmware(
 					Utils.id_to_eui64[testbed_node_id]
 				)
 
 	def _remove_unused(self, nodes):
-		print "[REFLASH] Removing unused nodes from index..."
+		print ("[REFLASH] Removing unused nodes from index...")
 		for testbed_node_id in nodes:
 			eui64 = Utils.id_to_eui64[testbed_node_id]
 			del Utils.id_to_eui64[testbed_node_id]
@@ -42,7 +42,7 @@ class Reflash(object):
 	def _flash_eui64_firmware(self, eui64):
 		# {0}/deviceType/mote/deviceId/{1}/cmd/program
 		try:
-			print "[REFLASH] Flashing to {0}...".format(eui64)
+			print ("[REFLASH] Flashing to {0}...".format(eui64))
 			with open(os.path.join(self.FIRMWARE_PATH, "{0}_eui64_fw".format(self.testbed)), "r") as f:
 				data = f.read()
 				payload = {
