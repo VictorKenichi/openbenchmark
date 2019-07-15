@@ -161,7 +161,7 @@ class Simulator(object):
             sut_event_payload["destination"] = payload_obj["destination"]
             sut_event_payload["hopLimit"]    = 255
 
-        print "[SUT SIMULATOR] {0} event generated".format(event)
+        print ("[SUT SIMULATOR] {0} event generated".format(event))
 
         return sut_event_payload
 
