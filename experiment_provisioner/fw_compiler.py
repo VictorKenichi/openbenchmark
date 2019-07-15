@@ -48,10 +48,10 @@ class FWCompiler:
 		compiled_fw_path = os.path.join(self.local_repo, 'build', '{0}_armgcc'.format(self.board_names[self.testbed]), 'projects', 'common', '03oos_openwsn_prog')
 		move_to_location = os.path.join(self.fw_dir, fw_name)
 
-		print self.fw_dir
-		print fw_name
-		print compiled_fw_path
-		print move_to_location
+		print (self.fw_dir)
+		print (fw_name)
+		print (compiled_fw_path)
+		print (move_to_location)
 
 		mv_cmd = "mv {0} {1}".format(compiled_fw_path, move_to_location)
 		subprocess.Popen(mv_cmd, shell=True)
