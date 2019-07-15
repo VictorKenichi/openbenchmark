@@ -18,7 +18,7 @@ class OTBoxFlash:
 		self.client.on_connect = self.on_connect
 
 	def on_connect(self, client, userdata, flags, rc):
-		print "Connected to broker: {0}".format(self.broker)
+		print("Connected to broker: {0}".format(self.broker))
 		self.flash_firmware()
 		self.client.disconnect()
 
