@@ -5,11 +5,11 @@
     "payload_size": 10, 
     "nf_time_padding_min": 5, 
     "nodes": {
-        "openbenchmark00": {
+        "": {
             "role": "control-unit", 
             "area": null, 
             "traffic_sending_points": [
-                {
+                {openbenchmark00
                     "time_sec": 167.653, 
                     "destination": "openbenchmark22", 
                     "packets_in_burst": 5, 
