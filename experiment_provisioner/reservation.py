@@ -217,7 +217,7 @@ class WilabReservation(Reservation):
         self.run_yml_action(action="delete")
         self.mqtt_client.push_notification("terminated", True)
 
-#Opentestbed implementation -- Copiado do Wilab (Implementar modificacoes)
+#======================= Opentestbed implementation =======================
 '''
 This testbed don't have reservation, which means, the first one who launchs an experiment 
 catch the nodes for the experiment, so it's not necessary verify anything.
@@ -230,7 +230,6 @@ class OpentestbedReservation(Reservation):
     ####### Abstract method implementation #######
 
     def reserve_experiment(self):
-        print 'All motes reserved !'
         print("Opentestbed provisioning successful")
         self.mqtt_client.push_notification("provisioned", True)
 
@@ -238,10 +237,10 @@ class OpentestbedReservation(Reservation):
 # executado
     def check_experiment(self):
         if self.mqtt_client.check_data_stream():
-            print ("There is an experiment running !")
+            print("There is an experiment running !")
             return True
         else:
-            print ("There is no experiment running !")
+            print("There is no experiment running !")
             return False
 
     def terminate_experiment(self):
