@@ -278,10 +278,9 @@ class Opentestbed(Controller):
 
 		self.BROKER = self.configParser.get(self.CONFIG_SECTION, 'broker')
 
-		# Verificar os parametros para essa classe
 		self.reservation = OpentestbedReservation(user_id)
 
-		self.mqtt_client = MQTTClient.create('iotlab', user_id)  # User ID specific to OpenBenchmark platform
+		self.mqtt_client = MQTTClient.create('opentestbed', user_id)  # User ID specific to OpenBenchmark platform
 
 TESTBEDS = {
 	"iotlab": IoTLAB,
