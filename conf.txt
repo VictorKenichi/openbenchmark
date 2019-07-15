@@ -7,8 +7,7 @@ broker = broker.mqttdashboard.com
 password = YOUR_PASSWORD
 
 [opentestbed]
-broker = broker.mqttdashboard.com
-password = YOUR_PASSWORD
+broker = argus.paris.inria.fr
 
 [dependencies]
 ov-repo = https://github.com/malishav/openvisualizer.git
